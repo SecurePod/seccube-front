@@ -58,7 +58,7 @@ export default function CourseLayout({ children }: { children: React.ReactNode }
               </Container>
             </Box>
           </Box>
-          <Footer />
+          <Footer tag='httpd' num={1} />
         </Box>
       </Box>
     </>
