@@ -8,10 +8,10 @@ import { useRouter } from 'next/navigation'
 
 interface FooterProps {}
 
-async function StartConWithRedirect(tag: string) {
-  const data = await getConStart(tag)
-  return data
-}
+// async function StartConWithRedirect(tag: string) {
+//   const data = await getConStart(tag)
+//   return data
+// }
 
 interface FooterProps {
   tag: string
