@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useRef, ReactNode } from 'react'
-import styles from './Accordion.module.scss'
+import styles from './accordion.module.scss'
 import Chevron from './chevron'
 
 interface AccordionProps {
