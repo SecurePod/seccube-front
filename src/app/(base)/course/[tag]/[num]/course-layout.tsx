@@ -1,9 +1,15 @@
-import Footer from '@/components/course/footer'
 import Header from '@/components/lab/header'
 import { Box } from '@mui/material'
 import { Container } from '@mui/material'
+import React from 'react'
 
-export default function CourseLayout({ children }: { children: React.ReactNode }) {
+export interface CourseData {
+  title: string
+  subtitle: string
+  children: React.ReactNode
+}
+
+export default function CourseLayout(data: CourseData) {
   return (
     <>
       <Box>
@@ -54,11 +60,11 @@ export default function CourseLayout({ children }: { children: React.ReactNode }
                     </svg>
                   </button>
                 </Box> */}
-                {children}
+                {data.children}
               </Container>
             </Box>
           </Box>
-          <Footer tag='httpd' num={1} />
+          {/* <Footer tag={data.tag} num={data.num} /> */}
         </Box>
       </Box>
     </>
