@@ -19,7 +19,7 @@ export default function Page({ params }: Props) {
   console.log(params.num)
   return (
     <>
-      <CourseLayout>
+      <CourseLayout tag={params.tag} num={params.num}>
         <h1>aaa</h1>
         <h1>aaa</h1>
         <h1>aaa</h1>
