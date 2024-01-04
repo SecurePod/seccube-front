@@ -1,11 +1,6 @@
 import { API_URL } from '@/config/config'
 
-type ConInfo = {
-  id: string
-  port: string
-}
-
-type ContainerInspectList = {
+export type ContainerIds = {
   id: string
 }[]
 
@@ -20,13 +15,13 @@ export type ContainerInformation = {
 /**
  * コンテナを起動する
  * @param {string} tag
- * @returns {Promise<ConInfo{string, string}>}
+ * @returns {Promise<ContainerIds{string, string}>}
  */
-export async function getConStart(tag: string): Promise<ConInfo> {
+export async function getConStart(tag: string): Promise<ContainerIds> {
   const res = await fetch(`http://${API_URL}/api/v1/docker/create/${tag}`, {
     method: 'POST',
   })
-  const data: ConInfo = await res.json()
+  const data: ContainerIds = await res.json()
   return data
 }
 
@@ -36,7 +31,7 @@ export async function getConStart(tag: string): Promise<ConInfo> {
  * @returns {Promise<ContainerInformation>}
  */
 export async function getConInfo(id: string[]) {
-  const jsonData: ContainerInspectList = id.map((id) => {
+  const jsonData: ContainerIds = id.map((id) => {
     return {
       id: id,
     }
