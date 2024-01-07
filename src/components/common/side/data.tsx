@@ -28,18 +28,18 @@ export const menuItems: SidebarMenu[] = [
 
 export const subMenuItems: SidebarMenu[] = [
   {
-    title: 'ホーム',
+    title: 'ヘルプ',
     icon: <HomeRoundedIcon />,
     path: '/',
   },
-  {
-    title: 'ダッシュボード',
-    icon: <SpaceDashboardRoundedIcon />,
-    path: '/dashboard',
-  },
-  {
-    title: 'コース',
-    icon: <FlagRoundedIcon />,
-    path: '/course',
-  },
+  // {
+  //   title: 'ダッシュボード',
+  //   icon: <SpaceDashboardRoundedIcon />,
+  //   path: '/dashboard',
+  // },
+  // {
+  //   title: 'コース',
+  //   icon: <FlagRoundedIcon />,
+  //   path: '/course',
+  // },
 ]
