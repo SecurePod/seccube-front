@@ -2,14 +2,24 @@ import CourseLayout from './course-layout'
 import React from 'react'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'My Page Title',
+interface Props {
+  params: {
+    tag: string
+    num: string
+  }
 }
 
-export default function Page() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return {
+    title: params.tag,
+  }
+}
+
+export default function Page({ params }: Props) {
+  console.log(params.num)
   return (
     <>
-      <CourseLayout>
+      <CourseLayout tag={params.tag} num={params.num}>
         <h1>aaa</h1>
         <h1>aaa</h1>
         <h1>aaa</h1>

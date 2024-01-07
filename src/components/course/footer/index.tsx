@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Button } from '@mui/material'
 import { getConStart } from '@/libs/docker/api'
 import { useRouter } from 'next/navigation'
+import { ContainerIds } from '@/libs/docker/api'
 
 interface FooterProps {}
 
@@ -15,10 +16,13 @@ interface FooterProps {}
 
 interface FooterProps {
   tag: string
-  num: number
+  num: string
 }
 
-const Footer: React.FC<FooterProps> = ({ tag, num }) => {
+const Footer: React.FC<FooterProps> = ({ tag, num }: FooterProps) => {
+  const truncateIds = (data: ContainerIds) => {
+    return data.map((item) => item.id.substring(0, 10)).join('/')
+  }
   const router = useRouter()
   console.log(tag, num)
   return (
@@ -55,9 +59,14 @@ const Footer: React.FC<FooterProps> = ({ tag, num }) => {
           <div className='px-3 md:px-6 inline-flex items-center justify-center col-span-1 md:col-span-1'>
             <Button
               onClick={async () => {
-                const data = await getConStart('httpd')
-                console.log((await data).id)
-                router.push(`/httpd/1/${data.id}`)
+                try {
+                  const data = await getConStart(tag)
+                  const truncatedIds = truncateIds(data)
+                  console.log(truncatedIds)
+                  router.push(`/${tag}/${truncatedIds}`)
+                } catch (error) {
+                  console.error('Error fetching data:', error)
+                }
               }}
               className='inline-flex bg-[#2696F0] items-center font-semibold text-center rounded-full outline-none transition duration-100 disabled:opacity-50 transition ease-in transition-all shadow-md hover:shadow-xl hover:bg-[#2696F0] focus-visible:ring text-white text-sm px-[20px] py-[10px]'
             >

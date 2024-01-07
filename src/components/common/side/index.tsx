@@ -174,34 +174,37 @@ export default function MiniDrawer({ children }: { children: React.ReactNode }):
         <List>
           {subMenuItems.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+              <Link href={item.path} passHref>
+                <ListItemButton
+                  disableRipple
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.title}
-                  primaryTypographyProps={{
-                    fontWeight: '400',
-                    fontFamily:
-                      'Lato, "Hiragino Maru Gothic Pro", "Meiryo UI", Meiryo, "MS PGothic", sans-serif;',
-                    color: '#1c3746',
-                    fontSize: '14px',
-                  }}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.title}
+                    primaryTypographyProps={{
+                      fontWeight: '400',
+                      fontFamily:
+                        'Lato, "Hiragino Maru Gothic Pro", "Meiryo UI", Meiryo, "MS PGothic", sans-serif;',
+                      color: '#1c3746',
+                      fontSize: '14px',
+                    }}
+                    sx={{ opacity: open ? 1 : 0, fontFamily: 'Lato' }}
+                  />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>

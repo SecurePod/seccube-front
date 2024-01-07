@@ -20,7 +20,12 @@ const Iframe: React.FC<IframeProps> = (props) => {
       >
         Reset
       </button>
-      <iframe key={count} src={'http://' + HOST_NAME + ':' + props.port}></iframe>
+      <iframe
+        width={800}
+        height={400}
+        key={count}
+        src={'http://' + HOST_NAME + ':' + props.port}
+      ></iframe>
     </>
   )
 }
