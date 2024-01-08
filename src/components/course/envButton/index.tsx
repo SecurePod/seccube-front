@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { getConStart, ContainerIds } from '@/libs/docker/api'
+import { ErrorModal } from '@/components/common/modal'
+import { useModal } from '@/hooks/useModal'
 
 const buttonStyle = {
   display: 'inline-flex',
@@ -34,6 +36,7 @@ const truncateIds = (data: ContainerIds) => {
 
 export function EnvStartButton() {
   const [loading, setLoading] = useState(false)
+  const { isOpen, openModal, closeModal } = useModal()
   const router = useRouter()
   const pathname = usePathname()
   const tag = pathname.split('/')[2]
@@ -45,9 +48,9 @@ export function EnvStartButton() {
       const data = await getConStart(tag)
       const truncatedIds = truncateIds(data)
       router.push(`/${tag}/${truncatedIds}`)
-      setLoading(false)
     } catch (error) {
       console.error('Error fetching data:', error)
+      openModal()
       setLoading(false)
     }
   }
@@ -80,6 +83,9 @@ export function EnvStartButton() {
       >
         環境を構築
       </LoadingButton>
+      <ErrorModal isOpen={isOpen} onClose={closeModal}>
+        環境の構築に失敗しました
+      </ErrorModal>
     </div>
   )
 }
