@@ -102,8 +102,15 @@ export function ErrorModal({ children, isOpen, onClose }: SpringModalProps) {
             >
               {children}
             </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
-              <Button sx={{}} variant='outlined' size='small' onClick={onClose} color='error'>
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
+              <Button
+                disableRipple
+                sx={{}}
+                variant='outlined'
+                size='medium'
+                onClick={onClose}
+                color='error'
+              >
                 閉じる
               </Button>
             </Box>
