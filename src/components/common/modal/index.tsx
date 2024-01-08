@@ -6,6 +6,8 @@ import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 import { useSpring, animated } from '@react-spring/web'
+import WarningIcon from '@mui/icons-material/Warning'
+import { Button } from '@mui/material'
 
 interface FadeProps {
   children: React.ReactElement
@@ -41,50 +43,24 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
   )
 })
 
-const themeStyles = {
-  default: {
-    bgcolor: 'background.paper',
-    color: 'black',
-  },
-  error: {
-    bgcolor: 'red',
-    color: 'white',
-  },
-  warning: {
-    bgcolor: 'orange',
-    color: 'black',
-  },
-  success: {
-    bgcolor: 'green',
-    color: 'white',
-  },
-}
-
 interface SpringModalProps {
-  text: string
-  theme?: 'default' | 'error'
+  text?: string
   children: React.ReactNode
   isOpen?: boolean
   onClose?: () => void
 }
 
-export default function SpringModal({
-  text,
-  theme = 'default',
-  children,
-  isOpen,
-  onClose,
-}: SpringModalProps) {
+export function ErrorModal({ children, isOpen, onClose }: SpringModalProps) {
   const style = {
     position: 'absolute' as const,
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    border: '2px solid #000',
+    width: 500,
     boxShadow: 24,
-    p: 4,
-    ...themeStyles[theme],
+    borderRadius: '10px',
+    bgcolor: '#fff',
+    border: '1px solid #fff',
   }
 
   return (
@@ -104,6 +80,89 @@ export default function SpringModal({
       >
         <Fade in={isOpen}>
           <Box sx={style}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: '10px 10px 0 0',
+                p: 2,
+                bgcolor: '#EF4444',
+                color: '#fff',
+              }}
+            >
+              <WarningIcon />
+              <Typography sx={{ ml: 1, fontSize: '17px' }} fontWeight={600}>
+                エラー
+              </Typography>
+            </Box>
+            <Typography
+              id='spring-modal-description'
+              sx={{ p: 3, fontSize: '16px', fontWeight: 500 }}
+            >
+              {children}
+            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
+              <Button
+                disableRipple
+                sx={{}}
+                variant='outlined'
+                size='medium'
+                onClick={onClose}
+                color='error'
+              >
+                閉じる
+              </Button>
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
+  )
+}
+
+export default function SpringModal({ text, children, isOpen, onClose }: SpringModalProps) {
+  const style = {
+    position: 'absolute' as const,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    boxShadow: 24,
+    p: 4,
+    borderRadius: '10px',
+    bgcolor: '#fff',
+  }
+
+  return (
+    <div>
+      <Modal
+        aria-labelledby='spring-modal-title'
+        aria-describedby='spring-modal-description'
+        open={isOpen || false}
+        onClose={onClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            TransitionComponent: Fade,
+          },
+        }}
+      >
+        <Fade in={isOpen}>
+          <Box sx={style}>
+            <Box>
+              <Typography
+                sx={{
+                  bgcolor: '#EF4444',
+                  color: '#fff',
+                }}
+                variant='h6'
+                component='h2'
+              >
+                Error
+              </Typography>
+            </Box>
             <Typography id='spring-modal-title' variant='h6' component='h2'>
               {text}
             </Typography>
