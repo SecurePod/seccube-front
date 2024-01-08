@@ -2,29 +2,14 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Button } from '@mui/material'
-import { getConStart } from '@/libs/docker/api'
-import { useRouter } from 'next/navigation'
-import { ContainerIds } from '@/libs/docker/api'
+import { EnvStartButton } from '../envButton'
 
-interface FooterProps {}
+// import { ContainerIds } from '@/libs/docker/api'
 
-// async function StartConWithRedirect(tag: string) {
-//   const data = await getConStart(tag)
-//   return data
-// }
-
-interface FooterProps {
-  tag: string
-  num: string
-}
-
-const Footer: React.FC<FooterProps> = ({ tag, num }: FooterProps) => {
-  const truncateIds = (data: ContainerIds) => {
-    return data.map((item) => item.id.substring(0, 10)).join('/')
-  }
-  const router = useRouter()
-  console.log(tag, num)
+const Footer: React.FC = () => {
+  // const truncateIds = (data: ContainerIds) => {
+  //   return data.map((item) => item.id.substring(0, 10)).join('/')
+  // }
   return (
     <>
       <div
@@ -57,19 +42,8 @@ const Footer: React.FC<FooterProps> = ({ tag, num }: FooterProps) => {
             </button>
           </div>
           <div className='px-3 md:px-6 inline-flex items-center justify-center col-span-1 md:col-span-1'>
-            <Button
-              onClick={async () => {
-                try {
-                  const data = await getConStart(tag)
-                  const truncatedIds = truncateIds(data)
-                  console.log(truncatedIds)
-                  router.push(`/${tag}/${truncatedIds}`)
-                } catch (error) {
-                  console.error('Error fetching data:', error)
-                }
-              }}
-              className='inline-flex bg-[#2696F0] items-center font-semibold text-center rounded-full outline-none transition duration-100 disabled:opacity-50 transition ease-in transition-all shadow-md hover:shadow-xl hover:bg-[#2696F0] focus-visible:ring text-white text-sm px-[20px] py-[10px]'
-            >
+            <EnvStartButton />
+            {/* <LoadButtonPromise>
               <svg
                 fill='none'
                 stroke='currentColor'
@@ -86,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ tag, num }: FooterProps) => {
               </svg>
               <span className='hidden sm:block'>問題に挑戦！</span>
               <span className='inline sm:hidden'>挑戦！</span>
-            </Button>
+            </LoadButtonPromise> */}
           </div>
           {/* <div className='px-3 md:px-6 inline-flex items-center justify-end'>
             <span data-state='closed'>
