@@ -3,15 +3,7 @@ import Header from '@/components/lab/header'
 import { Box } from '@mui/material'
 import { Container } from '@mui/material'
 
-export default function CourseLayout({
-  children,
-  tag,
-  num,
-}: {
-  children: React.ReactNode
-  tag: string
-  num: string
-}) {
+export default function CourseLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Box>
@@ -66,7 +58,7 @@ export default function CourseLayout({
               </Container>
             </Box>
           </Box>
-          <Footer tag={tag} num={num} />
+          <Footer />
         </Box>
       </Box>
     </>

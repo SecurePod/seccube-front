@@ -15,11 +15,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function Page({ params }: Props) {
-  console.log(params.num)
+export default function Page() {
   return (
     <>
-      <CourseLayout tag={params.tag} num={params.num}>
+      <CourseLayout>
         <h1>aaa</h1>
         <h1>aaa</h1>
         <h1>aaa</h1>
