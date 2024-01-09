@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography'
 import { useSpring, animated } from '@react-spring/web'
 import WarningIcon from '@mui/icons-material/Warning'
 import { Button } from '@mui/material'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import ConfettiExplosion from 'react-confetti-explosion'
+import Link from 'next/link'
 
 interface FadeProps {
   children: React.ReactElement
@@ -122,12 +125,20 @@ export function ErrorModal({ children, isOpen, onClose }: SpringModalProps) {
 }
 
 interface ClearModalProps {
-  link?: string
-  isOpen?: boolean
-  onClose?: () => void
+  link: string
+  isOpen: boolean
+  onClose: () => void
 }
 
 export function ClearModal({ link, isOpen, onClose }: ClearModalProps) {
+  const [isExploding, setIsExploding] = React.useState(false)
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setIsExploding(true)
+    }
+  }, [isOpen])
+
   const style = {
     position: 'absolute' as const,
     top: '50%',
@@ -164,29 +175,32 @@ export function ClearModal({ link, isOpen, onClose }: ClearModalProps) {
                 alignItems: 'center',
                 borderRadius: '10px 10px 0 0',
                 p: 2,
-                bgcolor: '#EF4444',
+                bgcolor: '#44CAD6',
                 color: '#fff',
               }}
             >
-              <WarningIcon />
+              <CheckCircleIcon />
+
               <Typography sx={{ ml: 1, fontSize: '17px' }} fontWeight={600}>
-                エラー
+                <span>{isExploding && <ConfettiExplosion zIndex={10000} duration={4000} />}</span>
+                ステージクリア
               </Typography>
             </Box>
-            <Typography
-              id='spring-modal-description'
-              sx={{ p: 3, fontSize: '16px', fontWeight: 500 }}
-            >
-              {children}
-            </Typography>
+            <Link href={link} passHref>
+              <Typography
+                id='spring-modal-description'
+                sx={{ p: 3, fontSize: '16px', fontWeight: 500 }}
+              >
+                {link}
+              </Typography>
+            </Link>
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
               <Button
+                sx={{ border: '1px solid #44CAD6', color: '#44CAD6' }}
                 disableRipple
-                sx={{}}
                 variant='outlined'
                 size='medium'
                 onClick={onClose}
-                color='error'
               >
                 閉じる
               </Button>
