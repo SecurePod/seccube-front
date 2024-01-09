@@ -121,17 +121,23 @@ export function ErrorModal({ children, isOpen, onClose }: SpringModalProps) {
   )
 }
 
-export default function SpringModal({ text, children, isOpen, onClose }: SpringModalProps) {
+interface ClearModalProps {
+  link?: string
+  isOpen?: boolean
+  onClose?: () => void
+}
+
+export function ClearModal({ link, isOpen, onClose }: ClearModalProps) {
   const style = {
     position: 'absolute' as const,
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 500,
     boxShadow: 24,
-    p: 4,
     borderRadius: '10px',
     bgcolor: '#fff',
+    border: '1px solid #fff',
   }
 
   return (
@@ -151,24 +157,40 @@ export default function SpringModal({ text, children, isOpen, onClose }: SpringM
       >
         <Fade in={isOpen}>
           <Box sx={style}>
-            <Box>
-              <Typography
-                sx={{
-                  bgcolor: '#EF4444',
-                  color: '#fff',
-                }}
-                variant='h6'
-                component='h2'
-              >
-                Error
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: '10px 10px 0 0',
+                p: 2,
+                bgcolor: '#EF4444',
+                color: '#fff',
+              }}
+            >
+              <WarningIcon />
+              <Typography sx={{ ml: 1, fontSize: '17px' }} fontWeight={600}>
+                エラー
               </Typography>
             </Box>
-            <Typography id='spring-modal-title' variant='h6' component='h2'>
-              {text}
-            </Typography>
-            <Typography id='spring-modal-description' sx={{ mt: 2 }}>
+            <Typography
+              id='spring-modal-description'
+              sx={{ p: 3, fontSize: '16px', fontWeight: 500 }}
+            >
               {children}
             </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
+              <Button
+                disableRipple
+                sx={{}}
+                variant='outlined'
+                size='medium'
+                onClick={onClose}
+                color='error'
+              >
+                閉じる
+              </Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>
