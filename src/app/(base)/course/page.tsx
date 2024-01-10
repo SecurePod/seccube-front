@@ -6,7 +6,7 @@ import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 import Layout from '@/app/(base)/home-layout'
 import CardAccord from '@/components/lab/accordion/card-accord'
-import { courseData } from './data'
+import { AttackData, basicData, defenseData } from './data'
 import Image from 'next/image'
 
 interface TabPanelProps {
@@ -142,7 +142,7 @@ export default function BasicTabs() {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            {courseData.map((course, index) => (
+            {basicData.map((course, index) => (
               <CardAccord
                 key={index}
                 img={course.img}
@@ -156,10 +156,32 @@ export default function BasicTabs() {
             ))}
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            Item Two
+            {AttackData.map((course, index) => (
+              <CardAccord
+                key={index}
+                img={course.img}
+                num={course.num}
+                title={course.title}
+                tag={course.tag}
+                desc={course.desc}
+              >
+                {course.children}
+              </CardAccord>
+            ))}
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            Item Three
+            {defenseData.map((course, index) => (
+              <CardAccord
+                key={index}
+                img={course.img}
+                num={course.num}
+                title={course.title}
+                tag={course.tag}
+                desc={course.desc}
+              >
+                {course.children}
+              </CardAccord>
+            ))}
           </CustomTabPanel>
         </Box>
       </Box>
