@@ -10,7 +10,6 @@ import WarningIcon from '@mui/icons-material/Warning'
 import { Button } from '@mui/material'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import ConfettiExplosion from 'react-confetti-explosion'
-import Link from 'next/link'
 
 interface FadeProps {
   children: React.ReactElement
@@ -125,12 +124,12 @@ export function ErrorModal({ children, isOpen, onClose }: SpringModalProps) {
 }
 
 interface ClearModalProps {
-  link: string
+  link?: string
   isOpen: boolean
   onClose: () => void
 }
 
-export function ClearModal({ link, isOpen, onClose }: ClearModalProps) {
+export function ClearModal({ isOpen, onClose }: ClearModalProps) {
   const [isExploding, setIsExploding] = React.useState(false)
 
   React.useEffect(() => {
@@ -182,18 +181,18 @@ export function ClearModal({ link, isOpen, onClose }: ClearModalProps) {
               <CheckCircleIcon />
 
               <Typography sx={{ ml: 1, fontSize: '17px' }} fontWeight={600}>
-                <span>{isExploding && <ConfettiExplosion zIndex={10000} duration={4000} />}</span>
                 ステージクリア
               </Typography>
             </Box>
-            <Link href={link} passHref>
-              <Typography
-                id='spring-modal-description'
-                sx={{ p: 3, fontSize: '16px', fontWeight: 500 }}
-              >
-                {link}
-              </Typography>
-            </Link>
+            <Typography
+              id='spring-modal-description'
+              sx={{ p: 3, fontSize: '16px', fontWeight: 500, textAlign: 'center' }}
+            >
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {isExploding && <ConfettiExplosion zIndex={10000} duration={4000} />}
+              </Box>
+              クリアおめでとう！
+            </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
               <Button
                 sx={{ border: '1px solid #44CAD6', color: '#44CAD6' }}
