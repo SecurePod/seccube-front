@@ -22,9 +22,9 @@ const Iframe: React.FC<IframeProps> = (props) => {
       </button>
       <iframe
         width={800}
-        height={400}
+        height={800}
         key={count}
-        src={'http://' + HOST_NAME + ':' + props.port}
+        src={'http://' + HOST_NAME + ':' + props.port + '/sql'}
       ></iframe>
     </>
   )
