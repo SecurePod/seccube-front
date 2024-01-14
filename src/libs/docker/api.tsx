@@ -7,7 +7,7 @@ export type ContainerIds = {
 export type ContainerInformation = {
   id: string
   containerIp: string
-  hostPorts: number[]
+  hostPort: number[]
   containerPorts: number[]
   labels: string[]
 }[]
