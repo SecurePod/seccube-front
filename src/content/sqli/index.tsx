@@ -37,6 +37,7 @@ const Guide = () => {
 
 const Httpd: React.FC<ContentProps> = ({ data }) => {
   console.log(data)
+  console.log(data[0].hostPort[0])
   return (
     <>
       <Layout
@@ -67,7 +68,7 @@ const Httpd: React.FC<ContentProps> = ({ data }) => {
               name: 'Iframe',
               content: (
                 <>
-                  <Iframe port={8001} />
+                  <Iframe port={data[0].hostPort[0]} />
                 </>
               ),
             },
