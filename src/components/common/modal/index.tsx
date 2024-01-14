@@ -10,6 +10,7 @@ import WarningIcon from '@mui/icons-material/Warning'
 import { Button } from '@mui/material'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import ConfettiExplosion from 'react-confetti-explosion'
+import { Cheer } from '../confetti'
 
 interface FadeProps {
   children: React.ReactElement
@@ -63,6 +64,7 @@ export function ErrorModal({ children, isOpen, onClose }: SpringModalProps) {
     borderRadius: '10px',
     bgcolor: '#fff',
     border: '1px solid #fff',
+    zIndex: 9999,
   }
 
   return (
@@ -134,6 +136,7 @@ export function ClearModal({ isOpen, onClose }: ClearModalProps) {
 
   React.useEffect(() => {
     if (isOpen) {
+      Cheer()
       setIsExploding(true)
     }
   }, [isOpen])
@@ -148,6 +151,7 @@ export function ClearModal({ isOpen, onClose }: ClearModalProps) {
     borderRadius: '10px',
     bgcolor: '#fff',
     border: '1px solid #fff',
+    zIndex: 9999,
   }
 
   return (
