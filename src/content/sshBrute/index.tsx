@@ -21,7 +21,8 @@ const GuideData: React.FC<ContainerInformation> = (data: ContainerInformation) =
     <>
       <Guide components={components} {...props} />
       <Accordion title='1. 動作を確認する'>説明</Accordion>
-      <p>TargetIP : {data[0].containerIp}</p>
+      <p>Target machine IP : {data[1].containerIp}</p>
+      <p>Attacker machine IP : {data[0].containerIp}</p>
     </>
   )
 }
