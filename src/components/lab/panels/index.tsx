@@ -26,7 +26,9 @@ const Panels: React.FC<PanelsProps> = ({ tabsData }) => {
             ))}
           </TabList>
           {tabsData.map((tab, index) => (
-            <TabPanel key={index}>{tab.content}</TabPanel>
+            <div key={index} style={{ display: mainTab === index ? 'block' : 'none' }}>
+              {tab.content}
+            </div>
           ))}
         </Tabs>
       </div>
