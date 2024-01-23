@@ -24,7 +24,7 @@ const Iframe: React.FC<IframeProps> = (props) => {
         width={800}
         height={800}
         key={count}
-        src={'http://' + HOST_NAME + ':' + props.port + '/sql'}
+        src={'http://' + HOST_NAME + ':' + props.port}
       ></iframe>
     </>
   )

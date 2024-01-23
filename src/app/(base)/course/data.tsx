@@ -2,8 +2,8 @@ import { CardAccordProps } from '@/components/lab/accordion/card-accord'
 
 export const AttackData: CardAccordProps[] = [
   {
-    img: 'https://10000.co.jp/wp-content/uploads/2023/08/meta-image.png',
-    num: 1,
+    img: 'https://media.wired.co.uk/photos/606daf9785fac47146ccc4d9/master/w_1600%2Cc_limit/password_1.jpg',
+    num: 2,
     title: 'パスワードクラック入門',
     desc: 'xxxxx',
     tag: 'sshBrute',

@@ -83,7 +83,7 @@ export const data: EditorConfig = {
       $result = $dbh->query($sql);
       $result = $result->fetch();
       if ($result) {
-          $msg = 'ログインしました。<br>RiSTCTF{SQL_Injection_is_very_easy}';
+          $msg = 'ログインしました';
           $link = '<a href="index.php">ホーム</a>';
       } else {
           $msg = 'ユーザーネームもしくはパスワードが間違っています。';
@@ -126,28 +126,27 @@ const Manaco: React.FC = () => {
   }
 
   const sendCode = async () => {
-    if (editorRef.current) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      reqBody.code = editorRef.current.getValue()
-    }
+    // if (editorRef.current) {
+    //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //   // @ts-ignore
+    //   reqBody.code = editorRef.current.getValue()
+    // }
 
-    const result = await fetch('http://localhost:8081/api/v1/docker/write', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ...reqBody,
-      }),
-    })
-      .then((res) => {
-        return res.json()
-      })
-      .catch(() => {
-        return 'error'
-      })
-    console.log(result)
+    // const result = await fetch('http://localhost:8081/api/v1/docker/write', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     ...reqBody,
+    //   }),
+    // })
+    //   .then((res) => {
+    //     return res.json()
+    //   })
+    //   .catch(() => {
+    //     return 'error'
+    //   })
   }
 
   const [fileName, setFileName] = useState<string>('script.js')
@@ -155,8 +154,8 @@ const Manaco: React.FC = () => {
 
   return (
     <>
-      <button onClick={sendCode}>Show value</button>
-      <button disabled={fileName === 'script.js'} onClick={() => setFileName('script.js')}>
+      <button onClick={sendCode}> Save</button>
+      {/* <button disabled={fileName === 'script.js'} onClick={() => setFileName('script.js')}>
         script.js
       </button>
       <button disabled={fileName === 'style.css'} onClick={() => setFileName('style.css')}>
@@ -164,7 +163,7 @@ const Manaco: React.FC = () => {
       </button>
       <button disabled={fileName === 'index.html'} onClick={() => setFileName('index.html')}>
         index.html
-      </button>
+      </button> */}
       <Editor
         height='80vh'
         theme='myTheme'
