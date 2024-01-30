@@ -18,7 +18,7 @@ export type ContainerInformation = {
  * @returns {Promise<ContainerIds{string, string}>}
  */
 export async function getConStart(tag: string): Promise<ContainerIds> {
-  const res = await fetch(`http://${API_URL}/api/v1/docker/create/${tag}`, {
+  const res = await fetch(`${API_URL}/api/v1/docker/create/${tag}`, {
     method: 'POST',
   })
   const data: ContainerIds = await res.json()
