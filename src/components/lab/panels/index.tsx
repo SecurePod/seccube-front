@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
+import { Tabs, TabList, Tab } from 'react-tabs'
 import './style.css'
 
 export interface TabData {
