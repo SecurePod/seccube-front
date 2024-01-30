@@ -1,23 +1,40 @@
-export const meta = {
-  title: 'テスト',
-  author: '全力君',
-}
-
 # Hydraを使ってrootユーザーのパスワードを解析する
 
-### The current year is
+今回の目標はHydraを使って`root`ユーザーのパスワードを解析することです。
+
+<br></br>
+
+接続された攻撃用サーバーのルートディレクトリに`password-list.txt`という名前のファイルがあります。このファイルにはよく利用されているパスワードが大量に記載されています。
+
+<br></br>
+
+ファイルの中身が気になれば`cat`コマンドで確認してみましょう。
 
 ```bash
-sh -c "echo \$(date +%Y)"
+cat password-list.txt
 ```
 
-Target IP : {props.name}
+<br></br>
 
-あいうえお
-この`xxx`
+ファイルの中身を確認したところで早速Hydraを使ってパスワードを解析してみましょう。
+解析には時間がかかるので1~2分ほど待ちましょう。
 
-IPアドレスを
+```bash
+hydra -l root -P password-list.txt ssh://攻撃対象サーバのIPアドレス
+```
 
-**あああ**
+<br></br>
 
-Hello World
+このステージの答えは`root`ユーザーのパスワードです。解析ができたら右下の回答ボックスから回答してください。
+
+<br></br>
+
+また、本当にパスワードが正しいか`root`ユーザーでログインして検証することもできます。
+
+```bash
+ssh root@攻撃対象サーバのIPアドレス
+```
+
+<br></br>
+
+

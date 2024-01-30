@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography'
 import { useSpring, animated } from '@react-spring/web'
 import WarningIcon from '@mui/icons-material/Warning'
 import { Button } from '@mui/material'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import ConfettiExplosion from 'react-confetti-explosion'
+import { Cheer } from '../confetti'
 
 interface FadeProps {
   children: React.ReactElement
@@ -61,6 +64,7 @@ export function ErrorModal({ children, isOpen, onClose }: SpringModalProps) {
     borderRadius: '10px',
     bgcolor: '#fff',
     border: '1px solid #fff',
+    zIndex: 9999,
   }
 
   return (
@@ -121,17 +125,33 @@ export function ErrorModal({ children, isOpen, onClose }: SpringModalProps) {
   )
 }
 
-export default function SpringModal({ text, children, isOpen, onClose }: SpringModalProps) {
+interface ClearModalProps {
+  link?: string
+  isOpen: boolean
+  onClose: () => void
+}
+
+export function ClearModal({ isOpen, onClose }: ClearModalProps) {
+  const [isExploding, setIsExploding] = React.useState(false)
+
+  React.useEffect(() => {
+    if (isOpen) {
+      Cheer()
+      setIsExploding(true)
+    }
+  }, [isOpen])
+
   const style = {
     position: 'absolute' as const,
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 500,
     boxShadow: 24,
-    p: 4,
     borderRadius: '10px',
     bgcolor: '#fff',
+    border: '1px solid #fff',
+    zIndex: 9999,
   }
 
   return (
@@ -151,24 +171,43 @@ export default function SpringModal({ text, children, isOpen, onClose }: SpringM
       >
         <Fade in={isOpen}>
           <Box sx={style}>
-            <Box>
-              <Typography
-                sx={{
-                  bgcolor: '#EF4444',
-                  color: '#fff',
-                }}
-                variant='h6'
-                component='h2'
-              >
-                Error
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: '10px 10px 0 0',
+                p: 2,
+                bgcolor: '#44CAD6',
+                color: '#fff',
+              }}
+            >
+              <CheckCircleIcon />
+
+              <Typography sx={{ ml: 1, fontSize: '17px' }} fontWeight={600}>
+                ステージクリア
               </Typography>
             </Box>
-            <Typography id='spring-modal-title' variant='h6' component='h2'>
-              {text}
+            <Typography
+              id='spring-modal-description'
+              sx={{ p: 3, fontSize: '16px', fontWeight: 500, textAlign: 'center' }}
+            >
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {isExploding && <ConfettiExplosion zIndex={10000} duration={4000} />}
+              </Box>
+              クリアおめでとう！
             </Typography>
-            <Typography id='spring-modal-description' sx={{ mt: 2 }}>
-              {children}
-            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
+              <Button
+                sx={{ border: '1px solid #44CAD6', color: '#44CAD6' }}
+                disableRipple
+                variant='outlined'
+                size='medium'
+                onClick={onClose}
+              >
+                閉じる
+              </Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>

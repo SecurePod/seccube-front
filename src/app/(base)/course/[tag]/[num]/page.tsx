@@ -19,66 +19,7 @@ export default function Page() {
   return (
     <>
       <CourseLayout>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
-        <h1>aaa</h1>
+        <h1>ここに演習の説明を書く</h1>
       </CourseLayout>
     </>
   )

@@ -13,6 +13,7 @@ export default function Guide({ children }: { children: React.ReactNode }) {
           maxWidth: '100%',
           boxSizing: 'border-box',
           flexShrink: 0,
+          zIndex: 100,
         }}
       >
         <div className='flex-1 flex flex-col h-full'>

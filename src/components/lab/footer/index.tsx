@@ -3,14 +3,43 @@
 import React from 'react'
 import styles from './style.module.scss'
 import Link from 'next/link'
+import TextField from '@mui/material/TextField'
+import { useState } from 'react'
+import { ErrorModal } from '@/components/common/modal'
+import { useModal } from '@/hooks/useModal'
+import { ClearModal } from '@/components/common/modal'
+import { usePathname } from 'next/navigation'
+
+const ansData = new Map<string, string>([
+  ['sshBrute', 'YOUR_PASSWORD'],
+  ['b', 'xx'],
+])
 
 const Footer: React.FC = () => {
-  const test = () => {
-    console.log('test')
+  const pathname = usePathname()
+  const tag = pathname.split('/')[1]
+  const [answer, setAnswer] = useState('')
+  const { isOpen, openModal, closeModal } = useModal()
+  const { isOpen: isOpen2, openModal: openModal2, closeModal: closeModal2 } = useModal()
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer(event.target.value)
+  }
+
+  const handleSubmit = () => {
+    if (ansData.get(tag) === answer) {
+      openModal2()
+    } else {
+      openModal()
+    }
   }
 
   return (
     <>
+      <ErrorModal isOpen={isOpen} onClose={closeModal}>
+        ぶぶー！間違いだよ！
+      </ErrorModal>
+      <ClearModal isOpen={isOpen2} onClose={closeModal2}></ClearModal>
       <div className={styles.relativeContainer}>
         <div className={styles.gridContainer}>
           <div className={styles.gridItem}>
@@ -58,7 +87,15 @@ const Footer: React.FC = () => {
               </button>
             </Link>
             <span>
-              <button onClick={test} className={`${styles.button} ${styles.submit}`}>
+              <TextField
+                id='outlined-basic'
+                label='回答を入力'
+                variant='outlined'
+                size='small'
+                value={answer}
+                onChange={handleChange}
+              />
+              <button onClick={handleSubmit} className={`${styles.dekitaButton} ${styles.submit}`}>
                 できた！
               </button>
             </span>

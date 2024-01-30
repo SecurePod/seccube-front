@@ -34,6 +34,7 @@
     "@types/react-dom": "18.2.14",
     "ace-builds": "^1.31.1",
     "autoprefixer": "10.4.16",
+    "canvas-confetti": "^1.9.2",
     "eslint": "8.52.0",
     "eslint-config-next": "14.0.1",
     "gray-matter": "^4.0.3",
@@ -45,6 +46,8 @@
     "prettier": "^3.0.3",
     "react": "18.2.0",
     "react-ace": "^10.1.0",
+    "react-confetti": "^6.1.0",
+    "react-confetti-explosion": "^2.1.2",
     "react-dom": "18.2.0",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-tabs": "^6.0.2",
@@ -60,6 +63,7 @@
     "xterm-addon-fit": "^0.8.0"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "eslint-config-prettier": "^9.0.0"
   }

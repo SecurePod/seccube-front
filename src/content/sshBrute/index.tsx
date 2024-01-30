@@ -11,17 +11,21 @@ const Term = dynamic(() => import('@/components/lab/term'), {
   ssr: false,
 })
 
-const props = {
-  name: 'sshBrute',
+interface GuideDataProps {
+  attackerIp: string
+  targetIp: string
 }
 
 const GuideData: React.FC<ContainerInformation> = (data: ContainerInformation) => {
+  const props: GuideDataProps = {
+    attackerIp: data[0].containerIp,
+    targetIp: data[1].containerIp,
+  }
   const components = useMDXComponents({ Guide })
   return (
     <>
       <Guide components={components} {...props} />
-      <Accordion title='1. 動作を確認する'>説明</Accordion>
-      <p>TargetIP : {data[0].containerIp}</p>
+      <Accordion title='1. ヒント'>ヒント</Accordion>
     </>
   )
 }

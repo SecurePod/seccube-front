@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
+import { Tabs, TabList, Tab } from 'react-tabs'
 import './style.css'
 
 export interface TabData {
@@ -26,7 +26,9 @@ const Panels: React.FC<PanelsProps> = ({ tabsData }) => {
             ))}
           </TabList>
           {tabsData.map((tab, index) => (
-            <TabPanel key={index}>{tab.content}</TabPanel>
+            <div key={index} style={{ display: mainTab === index ? 'block' : 'none' }}>
+              {tab.content}
+            </div>
           ))}
         </Tabs>
       </div>
