@@ -2,55 +2,7 @@
 
 import { API_URL } from '@/config/config'
 import Editor, { Monaco, loader } from '@monaco-editor/react'
-import React, { useRef, useState } from 'react'
-
-const files: Record<string, File> = {
-  'script.js': {
-    name: 'script.tsx',
-    language: 'typescript',
-    value: `type MyReadonly<T> = {
-readonly [K in keyof T]: T[K]
-}
-    
-interface Todo {
-title: string
-description: string
-}
-
-const todo: MyReadonly<Todo> = {
-title: "Hey",
-description: "foobar"
-}`,
-  },
-  'style.css': {
-    name: 'style.css',
-    language: 'css',
-    value: 'someCSSCodeExample',
-  },
-  'index.html': {
-    name: 'index.html',
-    language: 'html',
-    value: `type MyReadonly<T> = {
-      readonly [K in keyof T]: T[K]
-    }
-    
-    interface Todo {
-      title: string
-      description: string
-    }
-    
-    const todo: MyReadonly<Todo> = {
-      title: "Hey",
-      description: "foobar"
-    }`,
-  },
-}
-
-interface File {
-  name: string
-  language: string
-  value: string
-}
+import React, { useRef } from 'react'
 
 type EditorConfig = {
   mode: string
@@ -84,7 +36,7 @@ export const data: EditorConfig = {
       $result = $dbh->query($sql);
       $result = $result->fetch();
       if ($result) {
-          $msg = 'ログインしました。<br>RiSTCTF{SQL_Injection_is_very_easy}';
+          $msg = 'ログインしました';
           $link = '<a href="index.php">ホーム</a>';
       } else {
           $msg = 'ユーザーネームもしくはパスワードが間違っています。';
@@ -104,12 +56,6 @@ export const data: EditorConfig = {
   `,
 }
 
-const reqBody = {
-  code: '',
-  path: './index.php',
-  containerId: '6ddcd4eacf95c220bda36d132cbcaa169d20620529c8bb745911fd488a4956be',
-}
-
 const Manaco: React.FC = () => {
   const editorRef = useRef<Monaco | null>(null)
 
@@ -127,37 +73,32 @@ const Manaco: React.FC = () => {
   }
 
   const sendCode = async () => {
-    if (editorRef.current) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      reqBody.code = editorRef.current.getValue()
-    }
-
-    const result = await fetch(`https://${API_URL}/api/v1/docker/write`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ...reqBody,
-      }),
-    })
-      .then((res) => {
-        return res.json()
-      })
-      .catch(() => {
-        return 'error'
-      })
-    console.log(result)
+    // if (editorRef.current) {
+    //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //   // @ts-ignore
+    //   reqBody.code = editorRef.current.getValue()
+    // }
+    // const result = await fetch(`https://${API_URL}/api/v1/docker/write`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     ...reqBody,
+    //   }),
+    // })
+    //   .then((res) => {
+    //     return res.json()
+    //   })
+    //   .catch(() => {
+    //     return 'error'
+    //   })
   }
-
-  const [fileName, setFileName] = useState<string>('script.js')
-  const file = files[fileName]
 
   return (
     <>
-      <button onClick={sendCode}>Show value</button>
-      <button disabled={fileName === 'script.js'} onClick={() => setFileName('script.js')}>
+      <button onClick={sendCode}> Save</button>
+      {/* <button disabled={fileName === 'script.js'} onClick={() => setFileName('script.js')}>
         script.js
       </button>
       <button disabled={fileName === 'style.css'} onClick={() => setFileName('style.css')}>
@@ -165,11 +106,10 @@ const Manaco: React.FC = () => {
       </button>
       <button disabled={fileName === 'index.html'} onClick={() => setFileName('index.html')}>
         index.html
-      </button>
+      </button> */}
       <Editor
         height='80vh'
         theme='myTheme'
-        path={file.name}
         options={{
           fontSize: 16,
         }}

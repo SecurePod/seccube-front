@@ -11,8 +11,8 @@ import { ClearModal } from '@/components/common/modal'
 import { usePathname } from 'next/navigation'
 
 const ansData = new Map<string, string>([
-  ['sshBrute', 'YOUR_PASSWORD'],
-  ['b', 'xx'],
+  ['sshBrute', 'william'],
+  ['sqli', 'sqli_is_easy'],
 ])
 
 const Footer: React.FC = () => {

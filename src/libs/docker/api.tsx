@@ -1,4 +1,3 @@
-import { API_URL } from '@/config/config'
 
 export type ContainerIds = {
   id: string

@@ -11,6 +11,7 @@ import { Button } from '@mui/material'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import ConfettiExplosion from 'react-confetti-explosion'
 import { Cheer } from '../confetti'
+import Link from 'next/link'
 
 interface FadeProps {
   children: React.ReactElement
@@ -196,6 +197,31 @@ export function ClearModal({ isOpen, onClose }: ClearModalProps) {
                 {isExploding && <ConfettiExplosion zIndex={10000} duration={4000} />}
               </Box>
               クリアおめでとう！
+            </Typography>
+            <Typography
+              id='spring-modal-description'
+              sx={{ p: 1, fontSize: '16px', fontWeight: 500, textAlign: 'center' }}
+            >
+              <button className='inline-flex items-center font-semibold text-center rounded-full outline-none transition duration-100 disabled:opacity-50 transition ease-in transition-all shadow-md hover:shadow-xl border-[#D2D5DA] bg-white border text-[#545F65] text-sm px-[20px] py-[10px] react:bg-transparent react:text-white'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth='2'
+                  stroke='currentColor'
+                  aria-hidden='true'
+                  className='w-5 h-auto inline-block sm:mr-2 align-middle'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'
+                  ></path>
+                </svg>
+                <Link href='/course' className='hidden sm:inline'>
+                  レッスン一覧
+                </Link>
+              </button>
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
               <Button
