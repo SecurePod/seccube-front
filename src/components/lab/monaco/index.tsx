@@ -1,6 +1,5 @@
 'use client'
 
-import { API_URL } from '@/config/config'
 import Editor, { Monaco, loader } from '@monaco-editor/react'
 import React, { useRef } from 'react'
 
