@@ -20,7 +20,12 @@ const Iframe: React.FC<IframeProps> = (props) => {
       >
         Reset
       </button>
-      <iframe width={800} height={800} key={count} src={`${HOST}:${props.port}/sql`}></iframe>
+      <iframe
+        width={800}
+        height={800}
+        key={count}
+        src={`https://${HOST}:${props.port}/sql`}
+      ></iframe>
     </>
   )
 }

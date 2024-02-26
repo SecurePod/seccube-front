@@ -1,5 +1,6 @@
 'use client'
 
+import { API_URL } from '@/config/config'
 import Editor, { Monaco, loader } from '@monaco-editor/react'
 import React, { useRef, useState } from 'react'
 
@@ -132,7 +133,7 @@ const Manaco: React.FC = () => {
       reqBody.code = editorRef.current.getValue()
     }
 
-    const result = await fetch('http://localhost:8081/api/v1/docker/write', {
+    const result = await fetch(`https://${API_URL}/api/v1/docker/write`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
