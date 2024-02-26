@@ -54,7 +54,7 @@ const Term: React.FC<TermProps> = (props) => {
     window.addEventListener('resize', onSize, false)
 
     const connectWebSocket = () => {
-      const webSocket = new WebSocket(`ws://${API_URL}/web-socket/ssh/${props.id}`)
+      const webSocket = new WebSocket(`wss://${API_URL}/web-socket/ssh/${props.id}`)
 
       const attachAddon = new AttachAddon(webSocket)
       terminal.loadAddon(attachAddon)
