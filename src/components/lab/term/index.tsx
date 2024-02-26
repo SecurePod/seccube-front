@@ -6,6 +6,7 @@ import { AttachAddon } from 'xterm-addon-attach'
 import { FitAddon } from 'xterm-addon-fit'
 import '@/../xterm/css/xterm.css'
 import styles from './style.module.css'
+import { API_URL } from '@/config/config'
 
 interface TermProps {
   id: string
@@ -53,7 +54,7 @@ const Term: React.FC<TermProps> = (props) => {
     window.addEventListener('resize', onSize, false)
 
     const connectWebSocket = () => {
-      const webSocket = new WebSocket('ws://yuki-ishida.tech:8080' + '/web-socket/ssh/' + props.id)
+      const webSocket = new WebSocket(`ws://${API_URL}/web-socket/ssh/${props.id}`)
 
       const attachAddon = new AttachAddon(webSocket)
       terminal.loadAddon(attachAddon)

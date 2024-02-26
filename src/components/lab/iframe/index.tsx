@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useState } from 'react'
-import { HOST_NAME } from '@/config/config'
+import { HOST } from '@/config/config'
 
 interface IframeProps {
   port: number
@@ -24,7 +24,7 @@ const Iframe: React.FC<IframeProps> = (props) => {
         width={800}
         height={800}
         key={count}
-        src={'http://' + HOST_NAME + ':' + props.port}
+        src={`https://${HOST}:${props.port}/sql`}
       ></iframe>
     </>
   )
