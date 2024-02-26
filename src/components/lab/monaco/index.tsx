@@ -1,55 +1,8 @@
 'use client'
 
+import { API_URL } from '@/config/config'
 import Editor, { Monaco, loader } from '@monaco-editor/react'
-import React, { useRef, useState } from 'react'
-
-const files: Record<string, File> = {
-  'script.js': {
-    name: 'script.tsx',
-    language: 'typescript',
-    value: `type MyReadonly<T> = {
-readonly [K in keyof T]: T[K]
-}
-    
-interface Todo {
-title: string
-description: string
-}
-
-const todo: MyReadonly<Todo> = {
-title: "Hey",
-description: "foobar"
-}`,
-  },
-  'style.css': {
-    name: 'style.css',
-    language: 'css',
-    value: 'someCSSCodeExample',
-  },
-  'index.html': {
-    name: 'index.html',
-    language: 'html',
-    value: `type MyReadonly<T> = {
-      readonly [K in keyof T]: T[K]
-    }
-    
-    interface Todo {
-      title: string
-      description: string
-    }
-    
-    const todo: MyReadonly<Todo> = {
-      title: "Hey",
-      description: "foobar"
-    }`,
-  },
-}
-
-interface File {
-  name: string
-  language: string
-  value: string
-}
+import React, { useRef } from 'react'
 
 type EditorConfig = {
   mode: string
@@ -103,12 +56,6 @@ export const data: EditorConfig = {
   `,
 }
 
-const reqBody = {
-  code: '',
-  path: './index.php',
-  containerId: '6ddcd4eacf95c220bda36d132cbcaa169d20620529c8bb745911fd488a4956be',
-}
-
 const Manaco: React.FC = () => {
   const editorRef = useRef<Monaco | null>(null)
 
@@ -131,8 +78,7 @@ const Manaco: React.FC = () => {
     //   // @ts-ignore
     //   reqBody.code = editorRef.current.getValue()
     // }
-
-    // const result = await fetch('http://localhost:8081/api/v1/docker/write', {
+    // const result = await fetch(`https://${API_URL}/api/v1/docker/write`, {
     //   method: 'POST',
     //   headers: {
     //     'Content-Type': 'application/json',
@@ -149,9 +95,6 @@ const Manaco: React.FC = () => {
     //   })
   }
 
-  const [fileName, setFileName] = useState<string>('script.js')
-  const file = files[fileName]
-
   return (
     <>
       <button onClick={sendCode}> Save</button>
@@ -167,7 +110,6 @@ const Manaco: React.FC = () => {
       <Editor
         height='80vh'
         theme='myTheme'
-        path={file.name}
         options={{
           fontSize: 16,
         }}

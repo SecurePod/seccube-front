@@ -1,4 +1,3 @@
-import { API_URL } from '@/config/config'
 
 export type ContainerIds = {
   id: string
@@ -18,7 +17,7 @@ export type ContainerInformation = {
  * @returns {Promise<ContainerIds{string, string}>}
  */
 export async function getConStart(tag: string): Promise<ContainerIds> {
-  const res = await fetch(`${API_URL}/api/v1/docker/create/${tag}`, {
+  const res = await fetch(`https://${API_URL}/api/v1/docker/create/${tag}`, {
     method: 'POST',
   })
   const data: ContainerIds = await res.json()
@@ -38,7 +37,7 @@ export async function getConInfo(id: string[]) {
   })
   console.log(jsonData)
 
-  const res = await fetch(`http://localhost:8081/api/v1/docker/inspect`, {
+  const res = await fetch(`http://${API_URL}/api/v1/docker/inspect`, {
     method: 'POST',
     body: JSON.stringify(jsonData),
     headers: {

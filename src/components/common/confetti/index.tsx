@@ -1,5 +1,7 @@
 'use client'
 
+// eslint-disable-next-line
+// @ts-ignore
 import Confetti from 'canvas-confetti'
 
 export function Cheer() {

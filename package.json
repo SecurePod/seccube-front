@@ -29,7 +29,6 @@
     "@next/mdx": "^14.0.4",
     "@react-spring/web": "^9.7.3",
     "@types/mdx": "^2.0.10",
-    "@types/node": "20.8.10",
     "@types/react": "18.2.36",
     "@types/react-dom": "18.2.14",
     "ace-builds": "^1.31.1",
@@ -64,6 +63,7 @@
   },
   "devDependencies": {
     "@types/canvas-confetti": "^1.6.4",
+    "@types/node": "^20.11.20",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "eslint-config-prettier": "^9.0.0"
   }
