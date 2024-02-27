@@ -2,6 +2,7 @@
 
 import Editor, { Monaco, loader } from '@monaco-editor/react'
 import React, { useRef } from 'react'
+import { API_URL } from '@/config/config'
 
 type EditorConfig = {
   mode: string
