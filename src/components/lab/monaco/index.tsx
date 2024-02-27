@@ -8,6 +8,12 @@ type EditorConfig = {
   code: string
 }
 
+export type WriteData = {
+  code: string
+  path: string
+  containerId: string
+}
+
 export const data: EditorConfig = {
   mode: 'php',
   code: `<!DOCTYPE html>
@@ -55,7 +61,13 @@ export const data: EditorConfig = {
   `,
 }
 
-const Manaco: React.FC = () => {
+const reqBody: WriteData = {
+  code: '',
+  path: './index.php',
+  containerId: '',
+}
+
+const Manaco: React.FC<{ id: string }> = ({ id }) => {
   const editorRef = useRef<Monaco | null>(null)
 
   loader.init().then((monaco) => {
@@ -72,31 +84,33 @@ const Manaco: React.FC = () => {
   }
 
   const sendCode = async () => {
-    // if (editorRef.current) {
-    //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //   // @ts-ignore
-    //   reqBody.code = editorRef.current.getValue()
-    // }
-    // const result = await fetch(`https://${API_URL}/api/v1/docker/write`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     ...reqBody,
-    //   }),
-    // })
-    //   .then((res) => {
-    //     return res.json()
-    //   })
-    //   .catch(() => {
-    //     return 'error'
-    //   })
+    if (editorRef.current) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      reqBody.code = editorRef.current.getValue()
+    }
+    reqBody.containerId = id
+
+    await fetch(`https://${API_URL}/api/v1/docker/write`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...reqBody,
+      }),
+    })
+      .then((res) => {
+        return res.json()
+      })
+      .catch(() => {
+        return 'error'
+      })
   }
 
   return (
     <>
-      <button onClick={sendCode}> Save</button>
+      <button onClick={sendCode}>保存する</button>
       {/* <button disabled={fileName === 'script.js'} onClick={() => setFileName('script.js')}>
         script.js
       </button>
