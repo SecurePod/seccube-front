@@ -55,7 +55,7 @@ const Httpd: React.FC<ContentProps> = ({ data }) => {
               name: 'Editor',
               content: (
                 <>
-                  <Monaco />
+                  <Monaco id={data[0].id} />
                 </>
               ),
             },
