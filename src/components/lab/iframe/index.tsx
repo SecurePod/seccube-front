@@ -1,7 +1,6 @@
 'use client'
 
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { HOST } from '@/config/config'
 
 interface IframeProps {
@@ -10,6 +9,11 @@ interface IframeProps {
 
 const Iframe: React.FC<IframeProps> = (props) => {
   const [count, setCount] = useState(0)
+  const [host, setHost] = useState<string | undefined>(undefined)
+
+  useEffect(() => {
+    setHost(HOST)
+  }, [count])
 
   return (
     <>
@@ -20,7 +24,7 @@ const Iframe: React.FC<IframeProps> = (props) => {
       >
         Reset
       </button>
-      <iframe width={800} height={800} key={count} src={`https://p${props.port}.${HOST}`}></iframe>
+      <iframe width={800} height={800} key={count} src={`https://${props.port}.${host}`}></iframe>
     </>
   )
 }
