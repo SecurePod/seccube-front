@@ -63,7 +63,7 @@ const Httpd: React.FC<ContentProps> = ({ data }) => {
               name: 'Iframe',
               content: (
                 <>
-                  <Iframe port={data[0].hostPort[0]} />
+                  <Iframe port={data[0].hostPort[0]} path='' />
                 </>
               ),
             },

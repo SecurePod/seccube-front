@@ -28,7 +28,7 @@ const Httpd: React.FC<ContentProps> = ({ data }) => {
               name: 'Iframe',
               content: (
                 <>
-                  <Iframe port={data[0].hostPort[0]} path='/vnc.html' />
+                  <Iframe port={data[0].hostPort[0]} path='vnc.html' />
                 </>
               ),
             },
