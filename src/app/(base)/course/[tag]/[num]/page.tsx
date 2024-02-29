@@ -108,6 +108,7 @@ export default function Page({ params }: Props) {
       <CourseLayout>
         {params.tag === 'sqli' && sqli}
         {params.tag === 'sshBrute' && sshBrute}
+        {params.tag === 'cli' && <p>unko</p>}
       </CourseLayout>
     </>
   )

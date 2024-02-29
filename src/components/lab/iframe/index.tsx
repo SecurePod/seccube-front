@@ -5,6 +5,7 @@ import { HOST } from '@/config/config'
 
 interface IframeProps {
   port: number
+  path?: string
 }
 
 const Iframe: React.FC<IframeProps> = (props) => {
@@ -24,7 +25,12 @@ const Iframe: React.FC<IframeProps> = (props) => {
       >
         Reset
       </button>
-      <iframe width={800} height={800} key={count} src={`https://p${props.port}.${host}`}></iframe>
+      <iframe
+        width={800}
+        height={800}
+        key={count}
+        src={`https://p${props.port}.${host}/${props.path}`}
+      ></iframe>
     </>
   )
 }

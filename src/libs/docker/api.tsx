@@ -38,7 +38,7 @@ export async function getConInfo(id: string[]) {
   })
   console.log(jsonData)
 
-  const res = await fetch(`http://${API_URL}/api/v1/docker/inspect`, {
+  const res = await fetch(`https://${API_URL}/api/v1/docker/inspect`, {
     method: 'POST',
     body: JSON.stringify(jsonData),
     headers: {
