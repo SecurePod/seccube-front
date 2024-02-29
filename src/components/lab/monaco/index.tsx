@@ -12,7 +12,7 @@ type EditorConfig = {
 export type WriteData = {
   code: string
   path: string
-  containerId: string
+  id: string
 }
 
 export const data: EditorConfig = {
