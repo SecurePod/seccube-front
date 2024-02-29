@@ -5,14 +5,12 @@ import Iframe from '@/components/lab/iframe'
 import { ContentProps } from '../types'
 import { useMDXComponents } from '@/libs/mdx/mdx-component'
 import Guide from './guide.mdx'
-import Accordion from '@/components/lab/accordion/accordion'
 
 const GuideData: React.FC = () => {
   const components = useMDXComponents({ Guide })
   return (
     <>
       <Guide components={components} />
-      <Accordion title='1. ヒント'>ヒント</Accordion>
     </>
   )
 }
