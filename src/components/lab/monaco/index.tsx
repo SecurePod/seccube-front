@@ -65,7 +65,7 @@ export const data: EditorConfig = {
 const reqBody: WriteData = {
   code: '',
   path: './index.php',
-  containerId: '',
+  id: '',
 }
 
 const Manaco: React.FC<{ id: string }> = ({ id }) => {
