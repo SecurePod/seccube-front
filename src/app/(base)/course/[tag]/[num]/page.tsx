@@ -108,6 +108,9 @@ export default function Page({ params }: Props) {
       <CourseLayout>
         {params.tag === 'sqli' && sqli}
         {params.tag === 'sshBrute' && sshBrute}
+        {params.tag === 'cli' && (
+          <p>説明はありません。ここには優しいCLIの説明が設置されるはずです。</p>
+        )}
       </CourseLayout>
     </>
   )

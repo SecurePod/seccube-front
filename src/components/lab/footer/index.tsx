@@ -13,6 +13,7 @@ import { usePathname } from 'next/navigation'
 const ansData = new Map<string, string>([
   ['sshBrute', 'william'],
   ['sqli', 'sqli_is_easy'],
+  ['cli', 'HELLO_CLI'],
 ])
 
 const Footer: React.FC = () => {
